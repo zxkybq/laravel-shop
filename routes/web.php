@@ -32,6 +32,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/test', function() {
             return 'Your email is verified';
         });
+
+        //收货地址
+        Route::get('user_addresses', 'UserAddressesController@index')->name('user_addresses.index');
     });
     // 结束
 });
