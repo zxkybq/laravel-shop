@@ -1,5 +1,10 @@
+/**
+ * 弹窗插件
+ */
+
 
 window._ = require('lodash');
+require('sweetalert');
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

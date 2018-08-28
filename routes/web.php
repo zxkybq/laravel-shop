@@ -33,8 +33,19 @@ Route::group(['middleware' => 'auth'], function() {
             return 'Your email is verified';
         });
 
-        //收货地址
+        //收货地址列表
         Route::get('user_addresses', 'UserAddressesController@index')->name('user_addresses.index');
+        //添加或编辑收货地址页面
+        Route::get('user_addresses/create', 'UserAddressesController@create')->name('user_addresses.create');
+        //添加收货地址
+        Route::post('user_addresses', 'UserAddressesController@store')->name('user_addresses.store');
+        //编辑地址页面
+        Route::get('user_addresses/{user_address}', 'UserAddressesController@edit')->name('user_addresses.edit');
+        //编辑收货地址
+        Route::put('user_addresses/{user_address}', 'UserAddressesController@update')->name('user_addresses.update');
+        //删除收货地址
+        Route::delete('user_addresses/{user_address}', 'UserAddressesController@destroy')->name('user_addresses.destroy');
+
     });
     // 结束
 });
