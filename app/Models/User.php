@@ -46,4 +46,11 @@ class User extends Authenticatable
             ->withTimestamps()
             ->orderBy('user_favorite_products.created_at', 'desc');
     }
+
+
+    // 模型关联 购物车
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
 }
