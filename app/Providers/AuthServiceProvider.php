@@ -16,7 +16,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
+        // 收货地址
         UserAddress::class => UserAddressPolicy::class,
+        // 订单
+        Order::class       => OrderPolicy::class,
     ];
 
     /**
