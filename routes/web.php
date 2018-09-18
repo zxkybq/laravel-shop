@@ -66,6 +66,12 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('orders', 'OrdersController@index')->name('orders.index');
         // 订单详情
         Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
+        // 支付
+        Route::get('payment/{order}/alipay', 'PaymentController@payByAlipay')->name('payment.alipay');
+        // 支付回调
+        Route::get('payment/alipay/return', 'PaymentController@alipayReturn')->name('payment.alipay.return');
+        // 微信支付
+        Route::get('payment/{order}/wechat', 'PaymentController@payByWechat')->name('payment.wechat');
 
     });
     // 结束
@@ -73,3 +79,15 @@ Route::group(['middleware' => 'auth'], function() {
 
 // 解决路由冲突(收藏列表)
 Route::get('products/{product}', 'ProductsController@show')->name('products.show');
+// 支付宝支付 回调
+Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')->name('payment.alipay.notify');
+
+// 微信支付 回调
+Route::post('payment/wechat/notify', 'PaymentController@wechatNotify')->name('payment.wechat.notify');
+Route::get('alipay', function() {
+    return app('alipay')->web([
+        'out_trade_no' => time(),
+        'total_amount' => '1',
+        'subject' => 'test subject - 测试',
+    ]);
+});
